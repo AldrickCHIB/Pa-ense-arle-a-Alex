@@ -13,6 +13,10 @@ public class ApiResponse {
     private Object object;
     private Long userId;
 
+
+    public ApiResponse() {
+    }
+
     public ApiResponse(Object object, HttpStatus httpStatus) {
         this.object = object;
         this.httpStatus = httpStatus;
@@ -34,5 +38,43 @@ public class ApiResponse {
     }
 
 
+    public String getMessage() {
+        return message;
+    }
 
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public boolean isError() {
+        return error;
+    }
+
+    public void setError(boolean error) {
+        this.error = error;
+    }
+
+    public HttpStatus getHttpStatus() {
+        return httpStatus;
+    }
+
+    public void setHttpStatus(HttpStatus httpStatus) {
+        this.httpStatus = httpStatus;
+    }
+
+    public Object getObject() {
+        return object;
+    }
+
+    public void setObject(Object object) {
+        this.object = object;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
 }
