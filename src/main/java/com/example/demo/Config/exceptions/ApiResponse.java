@@ -11,7 +11,7 @@ public class ApiResponse {
     private boolean error;
     private HttpStatus httpStatus;
     private Object object;
-    private Long userId;
+//    private Long userId;
 
 
     public ApiResponse() {
@@ -34,7 +34,7 @@ public class ApiResponse {
         this.error = error;
         this.httpStatus = httpStatus;
         this.object = object;
-        this.userId = userId;
+//        this.userId = userId;
     }
 
 
@@ -70,11 +70,11 @@ public class ApiResponse {
         this.object = object;
     }
 
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
+//    public Long getUserId() {
+//        return userId;
+//    }
+//
+//    public void setUserId(Long userId) {
+//        this.userId = userId;
+//    }
 }

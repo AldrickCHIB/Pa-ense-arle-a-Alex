@@ -3,6 +3,9 @@ package com.example.demo.Models;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
+
+import java.util.UUID;
 
 @Data
 @Entity
@@ -13,6 +16,9 @@ public class Enterprise {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "uuid", updatable = false, nullable = false)
+    private UUID uuid;
 
     @Column(name = "razonSocial", length = 50)
     private String razonSocial;
@@ -29,8 +35,12 @@ public class Enterprise {
     @Column(name = "correo", length = 45)
     private String correo;
 
+    public Enterprise() {
+    }
+
     public Enterprise(Long id, String razonSocial, String rfc, String telefono, String contacto, String correo) {
         this.id = id;
+        this.uuid = UUID.randomUUID();
         this.razonSocial = razonSocial;
         this.rfc = rfc;
         this.telefono = telefono;
@@ -40,6 +50,10 @@ public class Enterprise {
 
     public Long getId() {
         return id;
+    }
+
+    public UUID getUuid() {
+        return uuid;
     }
 
     public void setId(Long id) {

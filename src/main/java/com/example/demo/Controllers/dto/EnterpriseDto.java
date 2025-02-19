@@ -3,10 +3,13 @@ package com.example.demo.Controllers.dto;
 import com.example.demo.Models.Enterprise;
 import lombok.Data;
 
+import java.util.UUID;
+
 @Data
 public class EnterpriseDto {
 
     private Long id;
+    private UUID uuid;  // Agregar el campo uuid
     private String razonSocial;
     private String rfc;
     private String telefono;
@@ -19,6 +22,7 @@ public class EnterpriseDto {
     // Constructor que convierte la entidad Enterprise a EnterpriseDto
     public EnterpriseDto(Enterprise enterprise) {
         this.id = enterprise.getId();
+        this.uuid = enterprise.getUuid();
         this.razonSocial = enterprise.getRazonSocial();
         this.rfc = enterprise.getRfc();
         this.telefono = enterprise.getTelefono();

@@ -11,6 +11,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.UUID;
+
 @AllArgsConstructor
 @Service
 public class EnterpriseService {
@@ -23,8 +26,28 @@ public class EnterpriseService {
         enterprise1 = enterpriseRepository.save(enterprise1);
 
         // Retornar la respuesta con la ApiResponse
-        System.err.println("antes de la response");
-        return new ResponseEntity<>(new ApiResponse("Empresa registrada correctamente", false, HttpStatus.OK, enterprise1),HttpStatus.OK);
+//        System.err.println("antes de la response");
+        return new ResponseEntity<>(new ApiResponse("Empresa registrada correctamente", false, HttpStatus.OK, enterprise1), HttpStatus.OK);
+    }
+
+    public ResponseEntity<ApiResponse> getAllEnterprises() {
+        // Obtener todas las empresas
+        List<Enterprise> enterprises = enterpriseRepository.findAll();
+//        System.out.println(enterprises);
+        // Retornar la respuesta con la ApiResponse
+        return new ResponseEntity<>(new ApiResponse("Empresas obtenidas correctamente", false, HttpStatus.OK, enterprises), HttpStatus.OK);
+    }
+
+    public ResponseEntity<ApiResponse> getEnterpriseByUuid(UUID uuid) {
+        // Buscar la empresa por uuid
+        Enterprise enterprise = enterpriseRepository.findByUuid(uuid).orElse(null);
+
+        if (enterprise == null) {
+            return new ResponseEntity<>(new ApiResponse("Empresa no encontrada", true, HttpStatus.NOT_FOUND, null), HttpStatus.NOT_FOUND);
+        }
+
+        // Retornar la respuesta con la ApiResponse
+        return new ResponseEntity<>(new ApiResponse("Empresa obtenida correctamente", false, HttpStatus.OK, enterprise), HttpStatus.OK);
     }
 }
 
